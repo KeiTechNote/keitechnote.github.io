@@ -100,13 +100,15 @@ defaults:
 date_format: "%Y-%m-%d"
 ```
 
-### 댓글 기능 설정하기
+### 댓글 & 구글 애널리틱스 기능 설정하기
+
+사이트 가입과 설정등의 절차가 있으므로 테디노트님의 [EP05. 댓글 & 구글 애널리틱스 추가하기](https://youtu.be/anXaW9xhgcU?si=oxzrfTsX3b-bptDT) 내요을 참고하기 바랍니다.
 
 - 설정 위치 : _config.yml > comments 
 
 > **설정값**
-- `disqus` : 
-- `shortname` : 
+- `disqus` : 코멘트 서비스 제공자
+- `shortname` : disqus 에 등록된 Shortname
 
 ```yml
 (생략)
