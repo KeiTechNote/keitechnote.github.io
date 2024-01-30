@@ -53,12 +53,17 @@ breadcrumbs     : true
 
 ### Site Author 설정하기
 
+사이드 바에 원하는 아이콘을 추가하고 싶다면, [Font Awesome](https://fontawesome.com/) 에서 원하는 아이콘을 검색해 사용합니다. 
+아이콘을 선택하면 오른쪽 화면에 HTML 코드를 볼 수 있습니다. HTML 코드를 복사합니다. 
+예를 들어, Youtube 를 추가한다면, Facebook, Github 와 같이 이전에 사용하던 아이콘과 이름을 비교해 보면 ```fa-youtube``` 부분을 제외하면 모두 동일하다는 것을 알 수 있습니다. 따라서, icon 이름을 맞춰서 작성합니다.
+
 - 설정 위치 : _config.yml > Site Author
 
 > **설정값**
 - `name` : 블로그 소유자 이름이나 닉네임
 - `bio`  : 블로그 설명
 - `location` : 위치
+- `avatar` : 아바타 이미지
 - `links` : 다양한 연결 정보를 지정
 
 ```yml
@@ -67,6 +72,7 @@ author:
     name    : "D.Kei"
     bio     : "D.Kei 개발 블로그"
     location: "South Korea"
+    avatar  : "<Avatar 이미지 경로>"
     links:
         - label: "Email"
           icon : "fas fa-fw fa-envelope-square"
@@ -77,6 +83,9 @@ author:
         - label: "Github"
           icon : "fab fa-fw fa-github"
           url  : "<Github 주소>"
+        - label: "Youtube"
+          icon: "fab fa-fw fa-youtube"
+          url: <원하는 Youtube Channel 경로>
 ```
 
 ### 기본값 설정하기
@@ -96,6 +105,24 @@ defaults:
 
 date_format: "%Y-%m-%d"
 ```
+
+### Footer 에 아이콘 추가하기
+
+메인화면 사이드바에 추가한 Youtube 정보 (Label, icon, url) 을 복사합니다. 
+만약, 메인화면 사이드바에 추가하지 않았다면, [참고](./2024-01-28-github-blog-season1.md#site-author-설정하기)해 작성합니다. 
+
+- 설정 위치 : _config.yml > footer > links
+
+```yml
+# Site Footer
+footer:
+    links:
+        (생략)
+        - label: "Youtube"
+          icon: "fab fa-fw fa-youtube"
+          url: <원하는 Youtube Channel 경로>
+```
+
 
 ### 댓글 & 구글 애널리틱스 기능 설정하기
 
