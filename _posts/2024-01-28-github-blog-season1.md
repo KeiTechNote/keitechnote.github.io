@@ -158,7 +158,7 @@ comments:
 analytics:
     provider: "google-gtag"
     google:
-        tracking_id : "<Google Analytics Tracking ID"
+        tracking_id : "<Google Analytics Tracking ID>"
         anonymize_ip: false      
 ```
 
@@ -167,8 +167,8 @@ analytics:
 - 설정 위치 : _config.yml > Outputting
 
 > **설정값**
-- `paginate` : 몇개 Post 부터 페이지로 나눠줄지 설정함
-- `timezone` : 타임존
+- `paginate` : 몇개 Post 부터 페이지로 나눠줄지 지정
+- `timezone` : 타임존 (참고 : [Wikipage](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones))
 
 ```yml
 (생략)
