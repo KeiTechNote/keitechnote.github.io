@@ -251,7 +251,6 @@ sidebar_main: true
 ---
 ```
 
-
 화면 상단에 노출되도록 내비게이션 파일을 수정합니다. 
 
 - 설정 위치 : _data > navigation.yml > main
