@@ -267,7 +267,7 @@ Post 를 선택했을 때, 네비게이션에서 Post 위치 표기 방식을 �
 
 ### LaTeX 수식 지원 설정하기
 
-설정에 필요한 `mathjax-support.html` 파일이 필요합니다. 따라서, 테디노트님의 [EP21. LaTeX 수식 문법을 지원하는 mathjax를 블로그에 적용하기]() 내용을 참고하시기 바랍니다.
+설정에 필요한 `mathjax-support.html` 파일이 필요합니다. 따라서, 테디노트님의 [EP21. LaTeX 수식 문법을 지원하는 mathjax를 블로그에 적용하기](https://youtu.be/3O08iA_BFbM?si=jqq_1F3WB4_W0PN8) 내용을 참고하시기 바랍니다.
 
 다운받은 mathjax-support.html 파일을 다음의 경로에 저장합니다.
 
