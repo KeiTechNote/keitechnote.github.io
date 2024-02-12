@@ -1,6 +1,6 @@
 ---
 title: "Layout: Excerpt (Generated)"
-except_separator: "<!--more-->"
+excerpt_separator: "<!--more-->"
 categories:
   - Layout
   - Uncategorized

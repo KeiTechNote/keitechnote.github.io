@@ -167,7 +167,7 @@ liquid:
 markdown: kramdown
 highlighter: rouge
 lsi: false
-except_separator: "\n\n"
+excerpt_separator: "\n\n"
 incremental: false
 
 
