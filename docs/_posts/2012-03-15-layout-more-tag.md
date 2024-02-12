@@ -1,6 +1,6 @@
 ---
 title: "Layout: More Tag"
-excerpt_separator: <!--more-->
+except_separator: <!--more-->
 categories:
   - Layout
   - Uncategorized
