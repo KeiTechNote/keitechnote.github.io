@@ -1,6 +1,6 @@
 ---
 layout: single
-title: go-ethereum 설치하기
+title: go-ethereum 설치하기 (update 2024-02-14)
 date: 2024-02-12 05:30 +09:00
 published: true
 categories: [Dev]
@@ -22,6 +22,11 @@ geth 는 cli (콘솔 명령어) 만 이용할 수 있으며, 업그레이드 기
 ### 다운로드
 
 현재 대부분의 OS 에서 설치할 수 있도록 설치 파일을 제공하고 있으므로 자신의 환경에 맞는 프로그램을 다운받아 설치를 진행합니다.
+
+**[Update : 2024-02-14]**
+go-ethereum은 1.12.0 버전부터 POW 를 공식적으로 제거했습니다. 따라서, POW 환경의 프라이빗 이더리움을 구성하려면, POW 를 지원하는 1.11.6 버전을 설치해야 합니다. ([1.11.6버전 다운로드](https://gethstore.blob.core.windows.net/builds/geth-windows-amd64-1.11.6-ea9e62ca.exe))
+![pow_private_ethereum](/assets/images/2024-02-14-pow-private-ethereum.png){: .align-center}
+{: .notice--info} 
 
 - geth 다운로드 : https://geth.ethereum.org/downloads
 
