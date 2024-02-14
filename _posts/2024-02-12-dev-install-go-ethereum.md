@@ -1,6 +1,6 @@
 ---
 layout: single
-title: go-ethereum 설치하기 (update 2024-02-14)
+title: go-ethereum 설치하기 (update 2024-02-15)
 date: 2024-02-12 05:30 +09:00
 published: true
 categories: [Dev]
@@ -22,6 +22,13 @@ geth 는 cli (콘솔 명령어) 만 이용할 수 있으며, 업그레이드 기
 ### 다운로드
 
 현재 대부분의 OS 에서 설치할 수 있도록 설치 파일을 제공하고 있으므로 자신의 환경에 맞는 프로그램을 다운받아 설치를 진행합니다.
+
+**[Update : 2024-02-15]**
+go-ethereum은 1.11.0 버전부터 `personal` 모듈을 공식적으로 제거했습니다. personal 모듈은 geth 에서 계정을 생성하는 기능을 갖고 있습니다. 
+personal 모듈이 삭제됨에 따라, `geth attach`로 접속해 Miner 를 설정하지 못하므로, Mining 을 할 수 없습니다. 
+따라서, Web3 라이브러리를 통해 계정을 생성해 Mining 하거나, 다운그레이드를 해야 합니다. ([1.10.26 버전 다운로드](https://gethstore.blob.core.windows.net/builds/geth-windows-amd64-1.10.26-e5eb32ac.exe))
+![personal_private_ethereum](/assets/images/2024-02-15-personal-private-ethereum.png){: .align-center}
+{: .notice--info} 
 
 **[Update : 2024-02-14]**
 go-ethereum은 1.12.0 버전부터 POW 를 공식적으로 제거했습니다. 따라서, POW 환경의 프라이빗 이더리움을 구성하려면, POW 를 지원하는 1.11.6 버전을 설치해야 합니다. ([1.11.6버전 다운로드](https://gethstore.blob.core.windows.net/builds/geth-windows-amd64-1.11.6-ea9e62ca.exe))
