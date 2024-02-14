@@ -20,6 +20,7 @@ Ganache 를 통해 이더리움 배포 전 점검은 완료되었습니다. 이�
 geth 는 Go 언어로 작성된 이더리움 노드로 쉽게 이더리움 네트워크에 접속해 동작되는 노드를 구성할 수 있습니다. 
 필요한 설치 과정은 다음 Post 를 참고하기 바랍니다.
 
+<<<<<<< Updated upstream
 - [이더리움 설치하기](https://keitechnote.github.io/dev/dev-install-go-ethereum/)
 - [프라이빗 이더리움 네트워크 구성하기](https://keitechnote.github.io/dev/dev-install-private-ethereum/)
 
@@ -70,6 +71,10 @@ TruffleSuite 기반 환경에서 배포할 네트워크는 `truffle-config.js` �
 
 ![running_private_ethereum](/assets/images/2024-02-12-running-private-ethereum.png){: .align-center}
 <p style="text-align: center;">동작중인 프라이빗 이더리움</p>
+=======
+- [go-ethereum 설치하기](https://keitechnote.github.io/dev/dev-install-go-ethereum/)
+- [Private Ethereum 구성하기](https://keitechnote.github.io/dev/dev-install-private-ethereum/)
+>>>>>>> Stashed changes
 
 
 
