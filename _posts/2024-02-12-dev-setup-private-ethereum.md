@@ -1,7 +1,7 @@
 ---
 layout: single
 title: 프라이빗 이더리움 셋업
-date: 2024-02-12 05:30 +09:00
+date: 2024-02-14 05:30 +09:00
 published: true
 categories: [dev]
 tag: [Dev, Blockchain, ethereum, 블록체인, 이더리움, private ethereum, 프라이빗 이더리움]
@@ -36,7 +36,7 @@ geth 는 Go 언어로 작성된 이더리움 노드로 쉽게 이더리움 네�
 
 - 명령어 : `geth --http --http.api admin,debug,web3,eth,net,miner,personal,rpc --nodiscover --datadir .\chaindata`
 
-![running_private_ethereum](/assets/images/2024-02-12-running-private-ethereum.png){: .align-center}
+![running_private_ethereum](/assets/images/2024-02-14-running-private-ethereum.png){: .align-center}
 <p style="text-align: center;">프라이빗 이더리움 실행</p>
 
 
@@ -44,7 +44,7 @@ geth 는 Go 언어로 작성된 이더리움 노드로 쉽게 이더리움 네�
 
 실행된 프라이빗 이더리움을 살펴보면, 다음 화면에서 진행되지 않는다는 것을 알 수 있습니다. 
 
-![warn_private_ethereum](/assets/images/2024-02-12-warn-private-ethereum.png){: .align-center}
+![warn_private_ethereum](/assets/images/2024-02-14-warn-private-ethereum.png){: .align-center}
 <p style="text-align: center;">프라이빗 이더리움 Warning</p>
 
 Warn 문구를 보면, etherbase 가 지정되지 않아 발생했습니다. 이때, etherbase 는 노드가 마이닝을 할때, 보상으로 받는 이더를 보관할 주소를 의미합니다. 즉, 마이닝 노드의 지갑 주소가 필요합니다. 따라서, 프라이빗 이더리움에 접속해 etherbase 를 지정해야 합니다. 
@@ -52,7 +52,7 @@ Warn 문구를 보면, etherbase 가 지정되지 않아 발생했습니다. 이
 
 - 명령어 : `geth attach`
 
-![attach_private_ethereum_1](/assets/images/2024-02-12-attach-private-ethereum-1.png){: .align-center}
+![attach_private_ethereum_1](/assets/images/2024-02-14-attach-private-ethereum-1.png){: .align-center}
 <p style="text-align: center;">프라이빗 이더리움 접속</p>
 
 터미널에 출력되는 내용 중 `modules`는 콘솔 접속시 사용할 수 있는 모듈 목록입니다. 해당 모듈 목록은 프라이빗 이더리움 실행시 `--http.api` 와 함께 입력했던 목록들입니다. 
@@ -72,13 +72,13 @@ Warn 문구를 보면, etherbase 가 지정되지 않아 발생했습니다. 이
 
 - 명령어 : `personal.newAccount()`
 
-![new_account_private_ethereum](/assets/images/2024-02-12-new-account-private-ethereum-1.png){: .align-center}
+![new_account_private_ethereum](/assets/images/2024-02-14-new-account-private-ethereum-1.png){: .align-center}
 <p style="text-align: center;">계정 생성</p>
 
 `Passphrase` 를 입력하면 계정이 생성되며, 계정 생성 사실은 프라이빗 이더리움에서도 확인할 수 있습니다. 
 또한 생성된 계정 정보는 `~\eth\chaindata\keystore` 에 저장됩니다. 
 
-![saved_account_private_ethereum](/assets/images/2024-02-12-new-account-private-ethereum-2.png){: .align-center}
+![saved_account_private_ethereum](/assets/images/2024-02-14-new-account-private-ethereum-2.png){: .align-center}
 <p style="text-align: center;">계정 저장</p>
 
 ### etherbase 지정하기
@@ -89,7 +89,7 @@ etherbase 는 Miner 주소이므로 `miner` 모듈을 사용해 지정합니다.
 
 miner 모듈을 통해 etherbase 를 지정하면 eth 모듈로 `coinbase` 를 확인하면 등록되었음을 알 수 있습니다. 
 
-![set_etherbase_private_ethereum](/assets/images/2024-02-12-set-etherbase-private-ethereum.png){: .align-center}
+![set_etherbase_private_ethereum](/assets/images/2024-02-14-set-etherbase-private-ethereum.png){: .align-center}
 <p style="text-align: center;">etherbase 지정</p>
 
 정상 등록이 완료되었다면, 이제 Mining 이 가능합니다. Mining 을 시작합니다.
@@ -99,7 +99,7 @@ miner 모듈을 통해 etherbase 를 지정하면 eth 모듈로 `coinbase` 를 �
 Mining 을 프라이빗 이더리움이 구성된 로컬에서 실행하면, 사용중인 PC 의 대부분의 리소스를 사용하게 됩니다. 
 따라서, Mining 여부만을 확인하기 위해 스레드 수를 나타내는 "1" 을 지정합니다. 
 
-![start_mining_private_ethereum](/assets/images/2024-02-12-start-mining-private-ethereum.png){: .align-center}
+![start_mining_private_ethereum](/assets/images/2024-02-14-start-mining-private-ethereum.png){: .align-center}
 <p style="text-align: center;">Mining 시작</p>
 
 Mining 이 동작하는 것을 확인했다면, Mining 을 종료합니다. 
