@@ -1,6 +1,6 @@
 ---
 layout: single
-title: Private Ethereum 구성하기
+title: 프라이빗 이더리움 구성하기
 date: 2024-02-13 05:30 +09:00
 published: true
 categories: [Dev]
