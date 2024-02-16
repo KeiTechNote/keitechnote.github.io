@@ -62,7 +62,7 @@ genesis.json 에는 다양한 정보가 있습니다. 그 중 기본적으로 �
 	    "homesteadBlock": 0,
 	    "eip150Block": 0,
 	    "eip155Block": 0,
-		"eip158Block": 0
+	    "eip158Block": 0
 	},
 	"difficulty": "0x20000",
 	"gasLimit": "0x8000000",
