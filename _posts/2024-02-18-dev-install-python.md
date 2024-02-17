@@ -1,7 +1,7 @@
 ---
 layout: single
 title: Python 설치하기
-date: 2024-02-17 05:30 +09:00
+date: 2024-02-18 00:30 +09:00
 published: true
 categories: [Dev]
 tag: [Dev, 개발환경, Python, Anaconda, 파이썬, 가상환경, 주피터 노트북, jupyter notebook]
