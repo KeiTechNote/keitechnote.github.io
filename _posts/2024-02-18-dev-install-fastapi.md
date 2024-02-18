@@ -59,7 +59,7 @@ async def say_hello(name: str):
 	return {"message": f"Hello {name}"}
 ```
 
-Unicorn 으로 API 서버를 실행합니다.
+Uvicorn 으로 API 서버를 실행합니다.
 
 - 명령어 : `uvicorn <파일명>:<FastAPI 인스턴스명> --host <서버 IP> --port <서버 Port> --reload`
 
