@@ -3,7 +3,7 @@ layout: single
 title: 프라이빗 이더리움 셋업
 date: 2024-02-14 05:30 +09:00
 published: true
-categories: [dev]
+categories: [Dev]
 tag: [Dev, Blockchain, ethereum, 블록체인, 이더리움, private ethereum, 프라이빗 이더리움]
 toc: true
 author_profile: false
