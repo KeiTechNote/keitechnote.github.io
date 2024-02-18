@@ -30,14 +30,14 @@ FastAPI 는 파이썬 패키지로 여타 파이썬 라이브러리를 설치하
 <p style="text-align: center;">FastAPI 설치</p>
 
 웹에서 API 를 호출하려면, API 는 접근 가능해야 합니다. 여기서 "접근 가능" 이라함은 "서버"를 의미합니다.
-FastAPI 가 API 개발을 위해 필요한 라이브러리라면, `Unicorn" 이 서버 역할을 합니다. 
+FastAPI 가 API 개발을 위해 필요한 라이브러리라면, `Uvicorn" 이 서버 역할을 합니다. 
 따라서, API 란 "기능 + 서버" 를 결합해야 동작하기에 "API = API 서버" 를 지칭하기도 합니다.   
-Unicorn 을 설치합니다.
+Uvicorn 을 설치합니다.
 
-- 명령어 : `pip install unicorn`
+- 명령어 : `pip install uvicorn`
 
-![install_unicorn](/assets/images/2024-02-18-install-unicorn.png){: .align-center}
-<p style="text-align: center;">Unicorn 설치</p>
+![install_uvicorn](/assets/images/2024-02-18-install-uvicorn.png){: .align-center}
+<p style="text-align: center;">Uvicorn 설치</p>
 
 ### API 서버 만들기
 
