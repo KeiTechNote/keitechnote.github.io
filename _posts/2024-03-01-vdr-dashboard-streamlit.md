@@ -97,9 +97,6 @@ if __name__ == "__main__":
 ![execute_servers](/assets/images/2024-03-01-execute-servers.png){: .align-center}
 {: .notice--info} 
 
-![execute_web_using_streamlit](/assets/images/2024-03-01-execute-servers.png){: .align-center}
-<p style="text-align: center;">등록/조회 테스트용 웹페이지</p>
-
 ### 웹페이지 탭 기능 추가하기
 
 현재와 같은 방식으로 웹 페이지를 작성하면, 새로운 페이지를 만들 때마다 Streamlit 을 실행해야 합니다. 
