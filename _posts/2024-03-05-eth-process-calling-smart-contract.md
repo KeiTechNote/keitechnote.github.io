@@ -72,8 +72,9 @@ CA 가 생성되었으므로 컨트랙트를 호출 준비는 완료되었습니
 ![remix_ide_storage_contract_abi](/assets/images/2024-03-05-remix-ide-storage-contract-abi.png){: .align-center}
 <p style="text-align: center;">Remix IDE 의 Storage 컨트랙트 ABI</p>
 
-ABI 를 바탕으로 함수를 호출할 때, 매개변수 타입, 개수 등 바로 확인할 수 있는 부분들이 검출합니다.  
-Getter() 로 함수 정보를 Hash(Function Hash)로 만들고 함수 호출 트랜잭션의 입력값으로 사용합니다. 
+ABI 는 함수를 호출할 때, 매개변수 타입, 개수 등 확인하는데 사용됩니다. 
+실제 함수 호출은 Function Hash를 사용합니다. 
+Function Hash는 Getter() 가 함수 정보로 생성하는 Hash 로 함수 호출 트랜잭션의 입력값으로 사용됩니다. 
 
 > Function Hash 만드는 로직
 * 매개변수가 있는 함수 : `bytes4(keccak256("함수명(매개변수 자료형)"))`
