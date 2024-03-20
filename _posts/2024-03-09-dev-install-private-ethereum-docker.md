@@ -16,11 +16,7 @@ author_profile: false
 ### 개요
 
 도커를 사용하면, [로컬에 구성하는 것](https://keitechnote.github.io/dev/dev-install-private-ethereum/)보다 좀 더 관리가 편리한 프라이빗 이더리움을 구성할 수 있습니다. 
-그 과정을 살펴보면, geth 를 사용해 로컬의 지정한 디렉토리에 초기화하고, 도커로 실행되므로, 로컬에 구성하는 것과 크게 다르지 않습니다. 
-다만, 이전에는 이더리움 1.0 기술이 주를 이루는 1.10.26 버전을 사용하고, 단일 노드만 구성 했다면, 이번엔 최신버전을 사용하고, 멀티 노드를 구성합니다. 
-
-> 1.10.26버전도 멀티 노드를 구성할 수 있으나, 앞으로 사용할 최신버전과 멀티 노드 구성방식에 차이가 있습니다. 오해없길 바랍니다.
-{: .notice--info}
+다만, 이전에는 1.10.26 버전을 사용해 단일 노드를 구성했다면, 본 Post 에서는 PoW / PoS 를 지원하는 최신버전인 1.13.14 를 사용하고, 멀티 노드를 구성합니다. 
 
 ### 사전 설치 프로그램
 
@@ -28,7 +24,7 @@ author_profile: false
 
 - [Docker Desktop(Kubernetes) 설치하기](https://keitechnote.github.io/dev/dev-install-docker-desktop/)
 
-### 도커 환경 구성하기
+### 도커 환경 구성하기 (공통)
 
 도커는 필요한 프로그램이 설치된 서버를 압축한 `이미지(image)` 파일을 실행함으로써 손쉽게 원하는 환경을 구성할 수 있습니다. 
 이미지 파일은 [Docker Hub](https://hub.docker.com/)와 같은 도커 이미지 저장소에 공개되어 있습니다. 
@@ -48,14 +44,15 @@ CLI 명령어는 반드시 Docker Desktop 이 실행되어야 동작합니다.
 
 #### 이더리움 이미지 다운로드
 
-도커에서는 이미지 다운로드를 `Pull` 이라고 합니다. 이더리움 이미지를 다운로드 합니다. 버전을 명시하지 않는다면, 항상 최신 버전이 다운로드 됩니다. 
+도커에서는 이미지 다운로드를 `Pull` 이라고 합니다. 이더리움 이미지를 다운로드 합니다. 버전을 명시하지 않는다면, 항상 최신 버전이 다운로드 됩니다. 하지만 1.14.x 부터 PoS 만을 지원합니다. PoW 또는 PoA 를 사용해 프라이빗 이더리움을 구축하기 위해선, 1.13.x 버전을 사용해야 합니다. 
+본 Post 를 작성시점을 기준으로 최신버전인 1.13.14 를 다운로드 합니다. 
 
-- 명령어 : `docker pull ethereum/client-go:alltools-latest`
+- 명령어 : `docker pull ethereum/client-go:alltools-v1.13.14`
 
 ![pull_ethereum_image](/assets/images/2024-03-09-pull-ethereum-image.png){: .align-center}
 <p style="text-align: center;">이더리움 이미지 다운로드</p>
 
-> `ethereum/client-go` 버전은 다양한 툴이 포함되지 않은 버전입니다. 여러 노드들을 연결하기 위해선 `bootnode` 가 필요하므로, 이미지 Tag 에 `alltools` 가 포함된 버전을 다운로드 합니다. 
+> `ethereum/client-go` 는 Tag에 버전만 표기된 go-ethereum only 버전과 `alltools` 로 표기되어 다양한 도구들이 포함된 버전으로 나눌 수 있습니다. 도구 설치 여부만 다를 뿐, 1.13.x 버전이라면 어느 것을 사용해도 무방합니다. 
 
 다운로드된 이미지는 Docker Desktop 의 `Images` 에서 확인할 수 있습니다. 
 
@@ -66,16 +63,11 @@ CLI 명령어는 반드시 Docker Desktop 이 실행되어야 동작합니다.
 ![client_go_overview_docker_hub](/assets/images/2024-03-09-client-go-overview-docker-hub.png){: .align-center}
 {: .notice--info}
 
-### bootnode용 키 생성하기 
-
-`bootnode`용 키는 client-go 이미지에 설치된 `bootnode`명령어로 생성합니다. 
-따라서, client-go 이미지를 실행한 후 접속해 생성해야 합니다. 
-
 #### client-go 이미지 실행하기
 
 도커는 `docker run <이미지명 : Tag>`으로 실행됩니다. 이후 옵션들은 도커 실행에 필요한 정보를 넣을 수 있습니다. 
 
-- 명령어 : `docker run --rm -it -p 0.0.0.0:8545:8545 -v "C:\Users\amana\OneDrive\바탕 화면\eth2":/home ethereum/client-go:alltools-latest`
+- 명령어 : `docker run --rm -it -p 0.0.0.0:8545:8545 -v "C:\Users\amana\OneDrive\바탕 화면\eth2":/home ethereum/client-go:alltools-v1.13.14`
 
 > 옵션
 - `--rm` : (optional) 도커가 종료되면 Stop 상태로 남게되고, 수동으로 Delete 를 해야 합니다. --rm 옵션은 도커 종료시 자동 삭제되도록 설정하는 옵션입니다. -it 옵션으로 접속 후 Console 을 종료하면, 이미지가 삭제됩니다.
@@ -94,21 +86,10 @@ CLI 명령어는 반드시 Docker Desktop 이 실행되어야 동작합니다.
 
 - 명령어 : `docker exec -it <container id> sh`
 
-#### bootnode 키 생성하기
+> `container id`는 `docker ps -a`로 확인할 수 있습니다.
+{: .notice--info}
 
-모든 나무가지는 가장 큰 줄기에서 뻗어나가듯 이더리움 네트워크도 여러갈래로 나뉘어진 나무와 같습니다. 
-따라서, 가장 큰 줄기가 되는 기준이 있으며, 그 기준이 `bootnode` (또는 `bootstrap node`) 입니다. 
-여러 노드들을 연결하는 프라이빗 이더리움을 구성하기 위해, 기준이 되는 bootnode 를 설정합니다. 
-
-bootnode 설정은 bootnode 키를 생성해 지정함으로써 완료됩니다. 
-Home 디렉토리 (이미지 실행시 Mount 했던 디렉토리) 로 이동해 bootnode 키를 생성합니다. 
-
-- 명령어 : `bootnode -genkey boot.key`
-
-![create_boot_node_key](/assets/images/2024-03-09-create-boot-node-key.png){: .align-center}
-<p style="text-align: center;">bootnode 키 생성</p>
-
-### 노드 Minging 계정 생성하기
+### 노드 Minging 계정 생성하기 (공통)
 
 노드별로 계정정보는 다르게 설정할 수 있습니다. 따라서, 각각 저장하기 위해 노드별 디렉토리를 생성한 후 계정을 생성/저장합니다. 
 
@@ -116,13 +97,16 @@ Home 디렉토리 (이미지 실행시 Mount 했던 디렉토리) 로 이동해 
 
 자신만의 노드별 디렉토리를 만듭니다.
 
-- 명령어 : `mkdir node1 node2`
+- 명령어 : `mkdir bootnode node1`
 
-#### Minging 계정 생성하기
+> 이해하기 쉽도록 명시적으로 bootnode 라고 지정했을 뿐, 임의의 노드를 bootnode 로 사용해도 됩니다. 
+{: .notice--info}
+
+#### Mining 계정 생성하기
 
 계정을 생성할 때, Password 를 반복 입력합니다. 
 
-- 명령어 : `geth account new --datadir node1`, `geth account new --datadir node2`
+- 명령어 : `geth account new --datadir bootnode`, `geth account new --datadir node1`
 
 ![create_miner_account](/assets/images/2024-03-09-create-miner-account.png){: .align-center}
 <p style="text-align: center;">노드별 Mining 계정 생성</p>
@@ -134,11 +118,11 @@ Home 디렉토리 (이미지 실행시 Mount 했던 디렉토리) 로 이동해 
 
 생성된 Mining 계정들은 genesis.json 에 기입할 예정이므로, 복사해 둡니다.
 
-- node1 mining 계정 : 0xa8EfF4bC760BA71eF8b7C6785EdDD7F956563F20
-- node2 mining 계정 : 0xf543D13F557AB77166f591E4BbB1725D29025369
+- bootnode miner 계정 : 0x6ddB80fB3faD94BE09bAaD2A5Cb8Df4cD419A9c9
+- node1 miner 계정 : 0x7B65cD6274b033ca42bdDC0Fce3C5ee30667FBE1
 
 
-### 프라이빗 이더리움 초기화하기
+### 프라이빗 이더리움 초기화하기 (공통)
 
 genesis.json 를 만들고 genesis block 을 생성하는 것이 프라이빗 이더리움 초기화입니다.
 
@@ -149,88 +133,116 @@ genesis.json 을 생성할 때 입력되는 값 등 세부적인 내용은 이�
 
 ```json
 {
-    {
-        "config": {
-            "chainId": <Chain Id>,
-            "homesteadBlock": 0,
-            "eip150Block": 0,
-            "eip155Block": 0,
-            "eip158Block": 0,
-            "byzantiumBlock": 0,
-            "constantinopleBlock": 0,
-            "petersburgBlock": 0,
-            "istanbulBlock": 0,
-            "berlinBlock": 0,
-            "londonBlock": 0,
-            "ethash" : {}
-        },
-        "difficulty": "0x20000",
-        "extraData": "0x0000000000000000000000000000000000000000000000000000000000000000a8EfF4bC760BA71eF8b7C6785EdDD7F956563F200000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
-        "gasLimit": "0x2fefd8",
-        "nonce": "0x0000000000000042",
-        "mixhash": "0x0000000000000000000000000000000000000000000000000000000000000000",
-        "parentHash": "0x0000000000000000000000000000000000000000000000000000000000000000",
-        "timestamp": "0x00",
-        "alloc": {},
+  "config": {
+    "chainId": <Chain Id>,
+    "homesteadBlock": 0,
+    "eip150Block": 0,
+    "eip155Block": 0,
+    "eip158Block": 0,
+    "byzantiumBlock": 0,
+    "constantinopleBlock": 0,
+    "petersburgBlock": 0,
+    "clique": {
+      "period": 30,
+      "epoch": 30000
     }
+  },
+  "difficulty": "1",
+  "gasLimit": "8000000",
+  "extradata" : "",
+  "alloc": {}
 }
 ```
-JSON 데이터에서 `Chain Id` 와 `alloc` 부분을 추가합니다. 
+JSON 데이터에서 `Chain Id`, `extradata` 와 `alloc` 부분을 추가합니다. 
 
 `Chain Id` 는 생성할 프라이빗 이더리움을 대표하는 Id 입니다. 이를 통해 네트워크에서 이더리움 네트워크을 구분합니다.
 즉, Chain Id 를 1로 설정하면, 이더리움 메인넷에 연결됩니다. (이 경우 메인넷 설정을 가져오게 됩니다.)
 
-`alloc` 은 생성할 프라이빗 이더리움의 계정들로 이전에 생성한 Mining 계정 2개를 다음과 같이 기입합니다. 
-각 계정별로 이더를 할당할 수 있습니다. 단위는 wei 입니다.
+`extradata`는 블록 생성자 주소로 "0x"를 제외하고 32Bytes (64글자) 간격으로 블록 생성자 주소를 기입합니다. 각 주소간에는 32Bytes 의 "0"으로 채웁니다. 즉, 생성자 주소1 과 생성자 주소2 가 있을 때, `0x<0 32Bytes><address1><0 32Bytes><address2><0 32Bytes>` 로 생성합니다. 
+
+```json
+(생략)
+"extradata" : "0x00000000000000000000000000000000000000000000000000000000000000006ddB80fB3faD94BE09bAaD2A5Cb8Df4cD419A9c900000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000007B65cD6274b033ca42bdDC0Fce3C5ee30667FBE10000000000000000000000000000000000000000000000000000000000000000"
+```
+
+`alloc` 은 생성할 프라이빗 이더리움의 계정을 지정하고, 계정별 이더를 할당할 수 있습니다. 단위는 Wei 입니다. 
+bootnode 계정을 등록합니다. 
 
 ```json
 (생략)
 "alloc" : {
-    "0xa8EfF4bC760BA71eF8b7C6785EdDD7F956563F20" : {
-        "balance" : 1000000000000000000
-    },
-    "0xf543D13F557AB77166f591E4BbB1725D29025369" : {
-        "balance" : 1000000000000000000
+    "0x6ddB80fB3faD94BE09bAaD2A5Cb8Df4cD419A9c9" : {
+        "balance" : 3000000000000000000
     }
 }
 ```
-> 이더리움은 Mining 방식을 PoW 인 [Ethash](https://geth.ethereum.org/docs/fundamentals/private-network#ethash) 와 PoA 인 [Clique](https://geth.ethereum.org/docs/fundamentals/private-network#clique) 를 지원합니다. 현재 PoW 로 설정했으며, 만약 PoA 를 희망한다면, `config` 하단에 `ethash : {}` 대신 다음의 clique 설정을 추가합니다.
-```json
-"config" : {
-    (생략)
-    "clique": {
-      "period": 5,
-      "epoch": 30000
-    }
-},
-"coinbase" : ~~
-```
+> 이더리움은 Mining 방식을 PoW 인 [Ethash](https://geth.ethereum.org/docs/fundamentals/private-network#ethash) 와 PoA 인 [Clique](https://geth.ethereum.org/docs/fundamentals/private-network#clique) 를 지원합니다. 현재 PoA 로 설정했으며, PoW 는 genesis.json 의 `config` 하단의 `clique : {}` 를 `ethash : {}`로, extradata 를 제거합니다. 
+{: .notice--info}
 
 #### 노드 초기화
 
-- 명령어 : `geth init --datadir node1 genesis.json`, `geth init --datadir node2 genesis.json`
+- 명령어 : `geth init --datadir bootnode genesis.json`, `geth init --datadir node1 genesis.json`
 
 ![init_private_ethereum_node](/assets/images/2024-03-09-init-private-ethereum-node.png){: .align-center}
-<p style="text-align: center;">각각 노드 초기화</p>
+<p style="text-align: center;">노드 초기화</p>
 
-#### 노드 Password 파일 생성하기
+### 프라이빗 이더리움 실행하기 (bootnode)
 
-여러 
+하나의 bootnode 를 먼저 실행한 후, 개별 노드들을 bootnode 에 연결합니다. 
 
+#### bootnode enode 확인하기
 
+노드를 초기화하면, nodekey 가 생성됩니다. 다른 노드들이 접속할 enode 를 nodekey 로 생성합니다. 
 
+- 위치 : `/home/bootnode/geth/`
+- 명령어 : `bootnode -nodekey nodekey -verbosity 4`
 
+![generate_bootnode_enode](/assets/images/2024-03-09-generate-bootnode-enode.png){: .align-center}
+<p style="text-align: center;">bootnode 의 enode</p>
 
+#### bootnode 실행하기
 
-### 프라이빗 이더리움 초기화
+- 명령어 : `geth --datadir bootnode --port 30305 --bootnodes enode://24b660747874bd0daf0980eec5e729660480a0ea05864f30c286d32e0bdfa0f9e8b9f0d1cd724a13e61ccc0488850e72675cc162bdad4d84f36edfdb5a8371d6@127.0.0.1:0?discport=30301 --networkid 15 --unlock 0x6ddB80fB3faD94BE09bAaD2A5Cb8Df4cD419A9c9 --password bootnode/password.txt --http --http.addr 0.0.0.0 --http.port 8545 --http.corsdomain "*" --http.vhosts "*" --allow-insecure-unlock --mine --miner.etherbase 0x6ddB80fB3faD94BE09bAaD2A5Cb8Df4cD419A9c9`
 
-초기화는 이더리움을 Docker 로 실행한 후 Mining 계정을 생성합니다. 
+![start_bootnode](/assets/images/2024-03-09-start-bootnode.png){: .align-center}
+<p style="text-align: center;">bootnode 실행</p>
 
+> 옵션
+- `--datadir` : 노드 데이터와 keystore 를 저장하는 디렉토리 경로
+- `--port` : 노드 Port
+- `--bootnodes` : bootnode 들의 enode 목록 (구분자 : ",")
+- `--networkid` : Chain Id
+- `--unlock` : 계정내 Balance 를 사용할 수 있도록, 잠금해제하는 계정 목록 (구분자 : ",")
+- `--http` : HTTP-RPC enable 
+- `--http.addr` : HTTP-RPC IP
+- `--http.port` : HTTP-RPC Port
+- `--http.corsdomain` : Cross Origin Request 를 허용할 도메인 목록
+- `--http.vhosts` : 접속을 허용할 가상 호스트 목록
+- `--allow-insecure-unlock` : 계정 잠금 해제 허용
+- `--mine` : Mining enable
+- `--miner.etherbase` : Miner Address
+{: .notice--info}
 
+### 프라이빗 이더리움 실행하기 (node1)
 
+bootnode 처럼 별도 node1용 도커를 실행해, node1용 도커에서 node1 을 실행합니다. 
+
+#### 노드용 도커 실행하기
+
+하나의 PC 에서 2개의 도커를 실행하므로 연결 Port 를 `8546` 으로 변경합니다. 
+
+- 명령어 : `docker run --rm -it -p 0.0.0.0:8546:8546 -v "C:\Users\amana\OneDrive\바탕 화면\eth2":/home ethereum/client-go:alltools-v1.13.14`
+
+#### 개별 노드 실행하기
+
+- 명령어 : `geth --datadir node1 --port 30306 --bootnodes enode://24b660747874bd0daf0980eec5e729660480a0ea05864f30c286d32e0bdfa0f9e8b9f0d1cd724a13e61ccc0488850e72675cc162bdad4d84f36edfdb5a8371d6@127.0.0.1:0?discport=30301 --networkid 15 --unlock 0x7B65cD6274b033ca42bdDC0Fce3C5ee30667FBE1 --password node1/password.txt --authrpc.port 8552`
+
+![start_node1](/assets/images/2024-03-09-start-node1.png){: .align-center}
+<p style="text-align: center;">node1 실행</p>
 
 
 ### 참고
 
+* [Clique signing](https://geth.ethereum.org/docs/tools/clef/clique-signing#main-content)
 * [Setup a Private Blockchain using Geth and Docker](https://coinsbench.com/setup-a-private-blockchain-using-geth-and-docker-6060a1169e6f)
 * [How to build an ethereum private blockchain network using geth and docker](https://hemantkgupta.medium.com/how-to-build-an-ethereum-private-blockchain-network-using-geth-and-docker-41f2ce8d6f6e)
