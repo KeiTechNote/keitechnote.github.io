@@ -4,7 +4,7 @@ title: 도커로 프라이빗 이더리움 구성하기
 date: 2024-03-09 05:30 +09:00
 published: true
 categories: [Dev]
-tag: [Dev, 개발환경, BlockChain, Ethereum, Private Ethereum, 프라이빗 이더리움, go-ethereum, geth, 도커, Docker, 쿠버네티스, Kubernetes]
+tag: [Dev, 개발환경, BlockChain, Ethereum, Private Ethereum, 프라이빗 이더리움, go-ethereum, geth, 도커, Docker, 쿠버네티스, Kubernetes, 1.13.14, multi node, PoA, Clique]
 toc: true
 author_profile: false
 ---
