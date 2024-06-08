@@ -1,7 +1,7 @@
 ---
 layout: single
 title: 부를 끌어당기는 글쓰기
-date: 2024-06-09 05:30 +09:00
+date: 2024-06-08 05:30 +09:00
 published: true
 categories: [Review]
 tags: [도서리뷰, Review, 글쓰기, 21세기북스]
